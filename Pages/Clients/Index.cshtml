@@ -1,0 +1,49 @@
+﻿@page
+@model CrudTest.Pages.Clients.IndexModel
+@{
+}
+
+<br>
+<h2>list of client</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@Model.errorMessage</strong>
+        <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label="Close"></button>
+    </div>
+}
+
+<a class='btn btn-primary btn-sm' href='/Clients/Create'>New client</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>email</th>
+            <th>phone</th>
+            <th>address</th>
+            <th>created at</th>
+            <th>action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listClients)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.email</td>
+                <td>@item.phone</td>
+                <td>@item.address</td>
+                <td>@item.created_at</td>
+                <td></td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Clients/Edit?id=@item.id">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/Clients/Delete?id=@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
